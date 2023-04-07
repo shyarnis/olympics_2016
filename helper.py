@@ -33,7 +33,7 @@ def fetch_medal_tally(df, year, country):
     # drop duplicates subset
     medal_df = df.drop_duplicates(subset=['Team', 'NOC', 'Games', 'Year', 'City', 'Sport', 'Event', 'Medal'])
     flag = 0
-    
+    temp_df = medal_df 
     if year == "Overall" and country == "Overall":
         temp_df = medal_df
     
@@ -49,9 +49,9 @@ def fetch_medal_tally(df, year, country):
         
     if flag == 1:
         # x = temp_df.groupby('region').sum()[['Gold', 'Silver', 'Bronze']].sort_values('Year').reset_index()
-        x = temp_df.groupby('region').sum()[['Gold', 'Silver', 'Bronze']].sort_values('Year').reset_index()
+        x = temp_df.groupby('region').sum(numeric_only=True)[['Gold', 'Silver', 'Bronze']].sort_values('Year').reset_index()
     else:
-        x = temp_df.groupby('region').sum()[['Gold', 'Silver', 'Bronze']].sort_values('Gold', ascending=False).reset_index()
+        x = temp_df.groupby('region').sum(numeric_only=True)[['Gold', 'Silver', 'Bronze']].sort_values('Gold', ascending=False).reset_index()
     
     x['Total'] = x['Gold'] + x['Silver'] + x['Bronze']
 
