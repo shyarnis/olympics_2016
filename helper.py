@@ -58,18 +58,14 @@ def fetch_medal_tally(df, year, country):
     return x
 
 
-def participating_nations_over_time(df):
-    
-    # nations ko values
-    # nations_over_time = df.drop_duplicates(['Year', 'region'])['Year'].value_counts().reset_index().sort_values('Year')
-    
-    # renaming columns name
-    # nations_over_time.rename(columns={'Year': 'Edition', 'count': 'No of Countries'}, inplace=True)
-    # return nations_over_time
-    # ValueError: Value of 'y' is not the name of a column in 'data_frame'. Expected one of ['index', 'Edition'] but received: No of Countries
+def data_over_time(df, col):
+    '''Return data over time 
+    Args:
+    df: data frame
+    col: column name of dataframe
+    '''
 
-    # from video
-    nations_over_time = df.drop_duplicates(['Year', 'region'])['Year'].value_counts().reset_index().sort_values('index')
-    nations_over_time.rename(columns={'index': 'Edition', 'Year': 'No of Countries'}, inplace=True)
+    nations_over_time = df.drop_duplicates(['Year', col])['Year'].value_counts().reset_index().sort_values('index')
+    nations_over_time.rename(columns={'index': 'Edition', 'Year': col}, inplace=True)
     return nations_over_time
 
