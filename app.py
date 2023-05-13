@@ -41,6 +41,7 @@ if user_menu == "Medal Tally":
 
 
     # dynamic title
+    medal_tally = helper.fetch_medal_tally(df, selected_year, selected_country)
     if selected_year == 'Overall' and selected_country == 'Overall':
         st.title("Overall Tally")
     if selected_year != 'Overall' and selected_country == 'Overall':
@@ -50,7 +51,6 @@ if user_menu == "Medal Tally":
     if selected_year != 'Overall' and selected_country != 'Overall':
         st.title(str(selected_country) + " performance in " + str(selected_year) + " Olympics")
     
-    medal_tally = helper.fetch_medal_tally(df, selected_year, selected_country)
     # st.dataframe(medal_tally)
     st.table(medal_tally)
 
