@@ -145,7 +145,10 @@ if user_menu == "Country Wise Analysis":
     st.title(selected_country + " excels in the following sports")
     pt = helper.country_event_heatmap(df,selected_country)
     fig, ax = plt.subplots(figsize=(20, 20))
-    ax = sns.heatmap(pt,annot=True)
+    try:
+        ax = sns.heatmap(pt,annot=True)
+    except ValueError:
+        pass
     st.pyplot(fig)
 
     st.title("Top 10 athletes of " + selected_country)
