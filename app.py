@@ -120,9 +120,13 @@ if user_menu == "Overall Analysis":
     st.pyplot(fig)
 
     # most successful athlete
-    #st.title("Most successful Athletes")
-    #x = helper.most_successful(df, 'Overall')
-    #st.table(x)
+    st.title("Most successful Athletes")
+    sport_list = df['Sport'].unique().tolist()
+    sport_list.sort()
+    sport_list.insert(0,'Overall')
+    selected_sport = st.selectbox('Select a Sport',sport_list)
+    x = helper.most_successful(df,selected_sport)
+    st.table(x)
 
 if user_menu == "Country Wise Analysis":
 
@@ -202,3 +206,12 @@ if user_menu == 'Athelete Wise Analysis':
     fig = px.line(final, x="Year", y=["Male", "Female"])
     fig.update_layout(autosize=False, width=1000, height=600)
     st.plotly_chart(fig)
+
+    # most successful athlete
+    st.title("Most successful Athletes")
+    sport_list = df['Sport'].unique().tolist()
+    sport_list.sort()
+    sport_list.insert(0,'Overall')
+    selected_sport = st.selectbox('Select a Sport',sport_list)
+    x = helper.most_successful(df,selected_sport)
+    st.table(x)
